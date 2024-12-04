@@ -1,0 +1,14 @@
+
+
+.validate-border-color.ng-invalid.ng-touched {
+  border-color: tomato;
+}
+
+/*
+
+Adicione
+
+ */
+.validate-border-color.ng-valid.ng-touched {
+  border-color: green;
+}

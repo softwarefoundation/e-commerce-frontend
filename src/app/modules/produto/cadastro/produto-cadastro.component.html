@@ -1,20 +1,26 @@
 <div class="container-fluid">
 
-  <form>
+  <form [formGroup]="formCadastroProduto">
+
     <div class="mb-3">
       <label for="nome" class="form-label">Nome</label>
-      <input type="text" class="form-control" id="nome" aria-describedby="nomeHelper">
-      <div id="nomeHelper" class="form-text">Informa o nome do produto.</div>
+      <input type="text" formControlName="nome" class="form-control validate-border-color" id="nome"
+             name="nome" aria-describedby="nomeHelper">
+      <span id="nomeHelper" class="form-text text-danger">Informa o nome do produto.</span>
     </div>
+
     <div class="mb-3">
       <label for="descricao" class="form-label">Descrição</label>
-      <input type="text" class="form-control" id="descricao">
+      <input type="text" formControlName="descricao" class="form-control validate-border-color" id="descricao"
+             name="descricao">
     </div>
+
     <div class="mb-3 form-check">
       <input type="checkbox" class="form-check-input" id="exampleCheck1">
       <label class="form-check-label" for="exampleCheck1">Check me out</label>
     </div>
-    <button type="submit" class="btn btn-primary">Salvar</button>
+    <button type="button" (click)="cadastrarProduto()" class="btn btn-primary">Salvar</button>
+
   </form>
 
 </div>
