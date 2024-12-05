@@ -22,7 +22,6 @@ export class ProdutoCadastroComponent implements OnInit {
     this.formCadastroProduto = this.fb.group({
       nome: ['', Validators.required],
       descricao: ['', Validators.required],
-      foto: [''],
     });
 
 
@@ -38,7 +37,7 @@ export class ProdutoCadastroComponent implements OnInit {
       this.produtoService.cadastrarProduto(this.produto).subscribe(
         {
           next: value => {
-            console.log(value)
+            this.formCadastroProduto.reset();
           },
           error: err => {
             console.error('ERRO: ', err)
