@@ -15,10 +15,11 @@
              name="descricao">
     </div>
 
-    <div class="mb-3 form-check">
-      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-      <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    <div class="mb-3">
+      <label for="foto"  class="form-label">Escolha o arquivo</label>
+      <input class="form-control" type="file" formControlName="foto" id="foto" (change)="uploadImagem($event)">
     </div>
+
     <button type="button" (click)="cadastrarProduto()" class="btn btn-primary">Salvar</button>
 
   </form>
