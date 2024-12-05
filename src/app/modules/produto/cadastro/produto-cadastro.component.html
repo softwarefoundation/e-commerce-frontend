@@ -16,8 +16,14 @@
     </div>
 
     <div class="mb-3">
-      <label for="foto" class="form-label">Escolha o arquivo</label>
-      <input class="form-control" type="file" formControlName="foto" id="foto" (change)="uploadImagem($event)">
+      <div class="card" style="width: 25rem;">
+        <img [src]="imagemCardUpload" class="card-img-top">
+        <div class="card-body">
+          <h5 class="card-title">Imagem do produto</h5>
+          <p class="card-text">Selecione a imagem do produto</p>
+          <input class="form-control" type="file" formControlName="foto" id="foto" (change)="uploadImagem($event)">
+        </div>
+      </div>
     </div>
 
     <button type="button" (click)="cadastrarProduto()" class="btn btn-primary">Salvar</button>

@@ -13,8 +13,8 @@ import {ToastrService} from "ngx-toastr";
 export class ProdutoCadastroComponent implements OnInit {
 
   formCadastroProduto!: FormGroup;
-  produto: Produto = {};
   imagemProdutoBase64: string = '';
+  imagemCardUpload: string = FileHelper.IMAGEM_PADRAO_CARD_UPLOAD;
 
   constructor(private produtoService: ProdutoService, private fb: FormBuilder, private toastrService: ToastrService) {
   }
@@ -25,23 +25,18 @@ export class ProdutoCadastroComponent implements OnInit {
       descricao: ['', Validators.required],
       foto: [''],
     });
-
-
   }
 
   cadastrarProduto() {
     if (this.formCadastroProduto.valid) {
 
-      this.produto = this.formCadastroProduto.getRawValue();
-      this.produto.imagem = this.imagemProdutoBase64;
+      const produto: Produto = this.formCadastroProduto.getRawValue();
+      produto.imagem = this.imagemProdutoBase64;
 
-      this.produtoService.cadastrarProduto(this.produto).subscribe(
+      this.produtoService.cadastrarProduto(produto).subscribe(
         {
           next: value => {
-            this.formCadastroProduto.reset();
-            this.toastrService.success('Produto salvo com sucesso!', '', {
-              progressBar: true,
-            });
+            this.limparFormularioAposSalvarProduto();
           },
           error: err => {
             console.error('ERRO: ', err)
@@ -55,12 +50,23 @@ export class ProdutoCadastroComponent implements OnInit {
     }
   }
 
+
+  private limparFormularioAposSalvarProduto() {
+    this.formCadastroProduto.reset();
+    this.imagemCardUpload = FileHelper.IMAGEM_PADRAO_CARD_UPLOAD;
+    this.imagemProdutoBase64 = '';
+    this.toastrService.success('Produto salvo com sucesso!', '', {
+      progressBar: true,
+    });
+  }
+
   uploadImagem(event: any) {
     if (event.target.files.length > 0) {
       let arquivo = event.target.files[0];
 
       FileHelper.convertParaBase64(arquivo).then(value => {
         this.imagemProdutoBase64 = value;
+        this.imagemCardUpload = value;
       });
 
     } else {
