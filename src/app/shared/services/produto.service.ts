@@ -15,7 +15,6 @@ export class ProdutoService {
 
 
   cadastrarProduto(produto: Produto): Observable<Produto> {
-    console.log(produto);
     return this.httpClient.post<Produto>(this.baseUrl, produto);
   }
 
