@@ -7,6 +7,7 @@ import {ProdutoCadastroComponent} from './modules/produto/cadastro/produto-cadas
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {ToastrModule} from "ngx-toastr";
 
 @NgModule({
   declarations: [
@@ -19,7 +20,10 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ToastrModule.forRoot({
+      preventDuplicates: true
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]

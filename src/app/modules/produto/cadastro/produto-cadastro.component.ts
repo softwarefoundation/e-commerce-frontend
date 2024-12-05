@@ -3,6 +3,7 @@ import {ProdutoService} from "../../../shared/services/produto.service";
 import {Produto} from "../../../shared/models/produto";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {FileHelper} from "../../../shared/utils/file-helper";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-produto-cadastro',
@@ -15,18 +16,18 @@ export class ProdutoCadastroComponent implements OnInit {
   produto: Produto = {};
   imagemProdutoBase64: string = '';
 
-  constructor(private produtoService: ProdutoService, private fb: FormBuilder) {
+  constructor(private produtoService: ProdutoService, private fb: FormBuilder, private toastrService: ToastrService) {
   }
 
   ngOnInit(): void {
     this.formCadastroProduto = this.fb.group({
       nome: ['', Validators.required],
       descricao: ['', Validators.required],
+      foto: [''],
     });
 
 
   }
-
 
   cadastrarProduto() {
     if (this.formCadastroProduto.valid) {
@@ -38,6 +39,9 @@ export class ProdutoCadastroComponent implements OnInit {
         {
           next: value => {
             this.formCadastroProduto.reset();
+            this.toastrService.success('Produto salvo com sucesso!', '', {
+              progressBar: true,
+            });
           },
           error: err => {
             console.error('ERRO: ', err)
@@ -45,7 +49,9 @@ export class ProdutoCadastroComponent implements OnInit {
         }
       )
     } else {
-      console.log('FORM INVALIDO...')
+      this.toastrService.warning('Verifique as infomações do formulário', '', {
+        progressBar: true,
+      });
     }
   }
 
