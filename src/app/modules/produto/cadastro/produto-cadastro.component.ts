@@ -39,7 +39,7 @@ export class ProdutoCadastroComponent implements OnInit {
             this.limparFormularioAposSalvarProduto();
           },
           error: err => {
-            console.error('ERRO: ', err)
+            this.toastrService.error('Não foi possível salvar o produto');
           }
         }
       )
