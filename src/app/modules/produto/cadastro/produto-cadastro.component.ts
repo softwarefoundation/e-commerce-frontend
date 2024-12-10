@@ -40,6 +40,7 @@ export class ProdutoCadastroComponent implements OnInit {
           },
           error: err => {
             this.toastrService.error('Não foi possível salvar o produto');
+            console.log(err);
           }
         }
       )
