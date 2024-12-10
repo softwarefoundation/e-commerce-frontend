@@ -11,6 +11,7 @@ import {ToastrModule} from "ngx-toastr";
 import {JwtHelperService, JwtModule} from "@auth0/angular-jwt";
 import {environment} from "../environments/environment";
 import {HttpInterceptorImpl} from "./modules/core/security/http-interceptor-impl";
+import { LoginComponent } from './modules/core/security/login/login.component';
 
 export function jwtTokenGetter() {
   return localStorage.getItem("access_token");
@@ -19,7 +20,8 @@ export function jwtTokenGetter() {
 @NgModule({
   declarations: [
     AppComponent,
-    ProdutoCadastroComponent
+    ProdutoCadastroComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
