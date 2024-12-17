@@ -69,17 +69,17 @@
 
 
 <main class="form-signin w-100 m-auto">
-  <form>
+  <form [formGroup]="formLogin">
     <h1 class="h3 mb-3 fw-normal"></h1>
 
     <div class="form-floating">
-      <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-      <label for="floatingInput">Usuário</label>
+      <input type="text" formControlName="username" class="form-control" id="username"  placeholder="Usuário">
+      <label for="username">Usuário</label>
     </div>
 
     <div class="form-floating">
-      <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-      <label for="floatingPassword">Senha</label>
+      <input type="password" formControlName="password" class="form-control" id="password" placeholder="Password">
+      <label for="password">Senha</label>
     </div>
 
     <div class="form-check text-start my-3">
@@ -88,7 +88,7 @@
         Remember me
       </label>
     </div>
-    <button class="btn btn-primary w-100 py-2" type="submit">Entrar</button>
+    <button class="btn btn-primary w-100 py-2" type="button" (click)="login()" >Entrar</button>
 
   </form>
 </main>

@@ -9,7 +9,7 @@ import {environment} from "../../../environments/environment";
 })
 export class ProdutoService {
 
-  baseUrl = environment.baseUrl;
+  baseUrl = environment.baseUrl.concat('/produto');
 
   constructor(private httpClient: HttpClient) {
   }

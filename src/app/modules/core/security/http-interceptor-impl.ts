@@ -8,6 +8,18 @@ export class HttpInterceptorImpl implements HttpInterceptor {
 
     console.log('HTTP Interceptor: ', req.url);
 
+    const token = localStorage.getItem('e-commerce-auth-token');
+
+    if(token !== null && !req.url.includes('auth/authenticate')){
+      req.clone({
+        setHeaders: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+    }
+
+
+
     return next.handle(req).pipe(
       map((event) => {
           return event;
